@@ -7,13 +7,21 @@ let password = document.querySelector("#password");
 let containerPassword = document.querySelector("#container-password");
 
 let charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@";
-let novaSenha = ""; 
 
 sizePassword.innerHTML = sliderElement.value; 
 
-sliderElement.oninput = function(){ 
+sliderElement.oninput = function() { 
     sizePassword.innerHTML = this.value;
 };
 
+buttonElement.onclick = generatePassword;
 
-
+function generatePassword() {
+    let length = sliderElement.value;
+    let newPassword = "";
+    for (let i = 0; i < length; i++) {
+        newPassword += charset.charAt(Math.floor(Math.random() * charset.length));
+    }
+    password.innerText = newPassword;
+    containerPassword.classList.remove("hide");
+}
